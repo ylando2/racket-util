@@ -9,7 +9,6 @@ some to bring the good part of c to racket.
 
 Here is a list of the macros for more detail
 look at the library
---------------------
 
 enum enum-case enum-val - do c enum statment in racket.  
 if* - is good for increasing the readability of the "if" statment.  
