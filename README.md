@@ -1,4 +1,4 @@
-A racket-util library for racket.
+racket-util
 =========================
 
 This is a library that I created In order to
