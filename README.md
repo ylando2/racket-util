@@ -22,7 +22,7 @@ when-let if-let - reduce indentation in a usefull patten.
 swap! - swap two variables.  
 point - add break point.  
 define+ - make a function breakable by "return".  
-up down down* while do-while until do-until each repeat - looping macros.
+up down down* while do-while until do-until each repeat - looping macros.   
 vref,vset! - shortcut for vector-ref and vector-set! but also useful for more then one dimmension array.   
 href,hset! - shortcut for hash-ref! and hash-set!.   
 get* - similar to hash-ref! only that if the hash key does not exist it evaluate the second argument put it on the hash and then return it.
