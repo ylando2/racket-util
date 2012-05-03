@@ -4,7 +4,8 @@
          enum-case enum-val enum $i $f $m 
          dbg when-let if-let swap! push! pop!
          point define+ while do-while until do-until
-         each up down repeat inc inc! dec dec!)
+         each up down repeat inc inc! dec dec!
+         get* down*)
  
 ;;if* is for the times that "if" look ugly it add the "then" keyword and the "else" keyword
 ;;and no need to use begin and add more indentation inside
@@ -109,6 +110,14 @@
 (define-syntax href
   (syntax-rules ()
     [(_ args ...) (hash-ref args ...)]))
+
+(define-syntax get*
+  (syntax-rules ()
+    [(_ hash key value) (if (hash-has-key? hash key) 
+                            (hash-ref hash key)
+                            (let ([val value])
+                              (hash-set! hash key val)
+                              val))]))
 
 ;;Macro for c style enum
 ;;used by:
@@ -350,6 +359,12 @@
     [(_ (var start) body ...) (let loop ([var start]) (when (>= var 0) body ... (loop (- var 1))))]
     [(_ (var start end) body ...) (let loop ([var start]) (when (>= var end) body ... (loop (- var 1))))]
     [(_ (var start end by) body ...) (let loop ([var start]) (when (>= var end) body ... (loop (- var by))))]))
+
+(define-syntax down*
+  (syntax-rules ()
+    [(_ (var start) body ...) (let loop ([var (- start 1)]) (when (>= var 0) body ... (loop (- var 1))))]
+    [(_ (var start end) body ...) (let loop ([var (- start 1)]) (when (>= var end) body ... (loop (- var 1))))]
+    [(_ (var start end by) body ...) (let loop ([var (- start 1)]) (when (>= var end) body ... (loop (- var by))))]))
 
 (define-syntax repeat
   (syntax-rules ()

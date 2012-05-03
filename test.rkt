@@ -21,6 +21,9 @@
 (hset! test-hash 'a 'b)
 (check-equal? (href test-hash 'a) 'b)
 (check-equal? (href test-hash 'b #f) #f)
+(check-equal? (get* test-hash 'a 'e) 'b)
+(check-equal? (get* test-hash 'b 'e) 'e)
+(check-equal? (href test-hash 'b) 'e)
 (define a 1)
 (define b 2)
 (swap! a b)
@@ -118,6 +121,18 @@
 
 (set! lst '())
 (down (i 6 2 2) (push! i lst))
+(check-equal? lst '(2 4 6))
+
+(set! lst '())
+(down* (i 3) (push! i lst))
+(check-equal? lst '(0 1 2))
+
+(set! lst '())
+(down* (i 4 1) (push! i lst))
+(check-equal? lst '(1 2 3))
+
+(set! lst '())
+(down* (i 7 2 2) (push! i lst))
 (check-equal? lst '(2 4 6))
 
 (set! lst '())
